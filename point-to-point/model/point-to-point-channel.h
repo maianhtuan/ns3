@@ -92,12 +92,13 @@ public:
    */
   virtual Ptr<NetDevice> GetDevice (uint32_t i) const;
 
-protected:
   /*
    * \brief Get the delay associated with this channel
    * \returns Time delay
    */
   Time GetDelay (void) const;
+  
+protected:
 
   /*
    * \brief Check to make sure the link is initialized
@@ -137,8 +138,7 @@ private:
    *
    * @see class CallBackTraceSource
    */
-  TracedCallback<uint32_t,          // channel ID
-                 Ptr<const Packet>, // Packet being transmitted
+  TracedCallback<Ptr<const Packet>, // Packet being transmitted
                  Ptr<NetDevice>,    // Transmitting NetDevice
                  Ptr<NetDevice>,    // Receiving NetDevice
                  Time,              // Amount of time to transmit the pkt

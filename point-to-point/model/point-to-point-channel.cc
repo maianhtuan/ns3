@@ -46,7 +46,6 @@ PointToPointChannel::GetTypeId (void)
   return tid;
 }
 
-//
 // By default, you get a channel that 
 // has an "infitely" fast transmission speed and zero delay.
 PointToPointChannel::PointToPointChannel()
@@ -66,10 +65,9 @@ PointToPointChannel::Attach (Ptr<PointToPointNetDevice> device)
   NS_ASSERT (device != 0);
 
   m_link[m_nDevices++].m_src = device;
-//
-// If we have both devices connected to the channel, then finish introducing
-// the two halves and set the links to IDLE.
-//
+
+  // If we have both devices connected to the channel, then finish introducing
+  // the two halves and set the links to IDLE.
   if (m_nDevices == N_DEVICES)
     {
       m_link[0].m_dst = m_link[1].m_src;
@@ -98,7 +96,7 @@ PointToPointChannel::TransmitStart (
                                   m_link[wire].m_dst, p);
 
   // Call the tx anim callback on the net device
-  m_txrxPointToPoint (GetId (), p, src, m_link[wire].m_dst, txTime, txTime + m_delay);
+  m_txrxPointToPoint (p, src, m_link[wire].m_dst, txTime, txTime + m_delay);
   return true;
 }
 
